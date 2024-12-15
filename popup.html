@@ -1,26 +1,41 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Chrome Version Checker</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 5px;
-      width: 187px;
-    }
-    #status {
-      font-weight: bold;
-    }
-    hr {
-      border-top: 1px solid #000;
-    }
-  </style>
+    <title>Chrome Version Checker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 10px;
+            width: 300px;
+        }
+        p {
+            margin: 5px 0;
+        }
+        hr {
+            margin: 10px 0;
+        }
+        #status {
+            font-weight: bold;
+        }
+        #check-now {
+            margin-top: 10px;
+            padding: 5px 10px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        #last-checked {
+            font-size: 10px;
+            font-style: italic;
+            color: #666;
+        }
+    </style>
 </head>
 <body>
-  <!-- <h3>Chrome Version Checker</h3> -->
-  <div id="version-info">
-    <p>Checking your browser version...</p>
-  </div>
-  <script type="module" src="popup.js"></script>
+    <!-- <h2>Chrome Version Checker</h2> -->
+    <div id="version-info">
+        <p>Loading...</p>
+    </div>
+    <button id="check-now">Check Now</button>
+    <script src="popup.js" type="module"></script>
 </body>
 </html>

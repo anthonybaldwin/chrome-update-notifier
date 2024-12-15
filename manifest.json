@@ -1,9 +1,9 @@
 {
   "manifest_version": 3,
-  "name": "Chrome Version Checker",
+  "name": "Chrome Update Notifier",
   "version": "1.1",
-  "description": "Warns if Google Chrome is out of date.",
-  "permissions": ["alarms", "storage"],
+  "description": "Notifies if Google Chrome is out of date.",
+  "permissions": ["alarms", "storage", "notifications"],
   "background": {
     "service_worker": "background.js",
     "type": "module"
