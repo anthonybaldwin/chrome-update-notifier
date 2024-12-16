@@ -68,12 +68,14 @@ import { updateVersionCache, getCachedData } from './ext-utils.js';
 
 function buildHtmlForVersionInfo(currentVersion, currentChannel, latestVersion, currentTime, outdated) {
     return `
-        <p><strong>Current Version:</strong> ${currentVersion} (${capitalize(currentChannel)})</p>
-        <p><strong>Latest Version:</strong> ${latestVersion} (${capitalize(currentChannel)})</p>
-        <hr>
         <p id="status" class="${outdated ? "outdated" : ""}">
-            ${outdated ? "Your browser is outdated. Please update!" : "Your browser is up-to-date."}
+            ${outdated ? "⚠️ Your browser is out-of-date." : "✅ Your browser is up-to-date."}
         </p>
-        <p id="last-checked"><strong>Last Checked:</strong> <u>${currentTime}</u>.</p>
+        <hr>
+        <div id="version-details">
+            <p><strong>Current Version:</strong> ${currentVersion} (${capitalize(currentChannel)})</p>
+            ${outdated ? `<p><strong>Latest Version:</strong> ${latestVersion}</p>` : ""}
+        </div>
+        <p id="last-checked"><strong>Last Checked:</strong> ${currentTime}</p>
     `;
 }

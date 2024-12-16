@@ -17,17 +17,9 @@
         }
 
         @keyframes gradientShift {
-            0% {
-                background-position: 0% 50%;
-            }
-
-            50% {
-                background-position: 100% 50%;
-            }
-
-            100% {
-                background-position: 0% 50%;
-            }
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         p {
@@ -39,7 +31,7 @@
             border: 0;
             height: 1px;
             background: #ddd;
-            margin: 15px 0;
+            margin-bottom: 15px;
         }
 
         #version-info {
@@ -51,10 +43,8 @@
 
         #status {
             font-weight: bold;
-            font-size: 16px;
-            padding-top: 10px;
-            /* Google Blue */
-            color: #4285F4;
+            font-size: 18px;
+            padding-bottom: 10px;
         }
 
         #status.outdated {
@@ -62,11 +52,20 @@
             color: #EA4335;
         }
 
+        #status:not(.outdated) {
+            /* Google Green */
+            color: #34A853;
+        }
+
+        #version-details p {
+            margin: 5px 0;
+        }
+
         #last-checked {
             font-size: 12px;
             font-style: italic;
             color: #666;
-            font-weight: lighter;
+            margin-top: 10px;
         }
 
         #check-now {
