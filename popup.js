@@ -71,7 +71,9 @@ function buildHtmlForVersionInfo(currentVersion, currentChannel, latestVersion, 
         <p><strong>Current Version:</strong> ${currentVersion} (${capitalize(currentChannel)})</p>
         <p><strong>Latest Version:</strong> ${latestVersion} (${capitalize(currentChannel)})</p>
         <hr>
-        <p id="status">${outdated ? "Your browser is outdated. Please update!" : "Your browser is up-to-date."}</p>
-        <p id="last-checked">(<strong>Last Checked:</em></strong> ${currentTime})</p>
+        <p id="status" class="${outdated ? "outdated" : ""}">
+            ${outdated ? "Your browser is outdated. Please update!" : "Your browser is up-to-date."}
+        </p>
+        <p id="last-checked"><strong>Last Checked:</strong> <u>${currentTime}</u>.</p>
     `;
 }
