@@ -1,5 +1,4 @@
-import { capitalize } from './string-utils.js';
-import { updateVersionCache, getCachedData } from './ext-utils.js';
+import { updateVersionCache, getCachedData, updateBrowserStatusIcon, capitalize } from './ext-utils.js';
 
 (async () => {
     const versionInfo = document.getElementById("version-info");
@@ -40,8 +39,10 @@ import { updateVersionCache, getCachedData } from './ext-utils.js';
         checkNowButton.disabled = true;
         checkNowButton.textContent = "Checking...";
     
-        const cacheData = await updateVersionCache(); // Update cache directly
+        const cacheData = await updateVersionCache();
         if (cacheData) {
+            const { currentChannel, latestVersion, isOutdated } = cacheData;
+            updateBrowserStatusIcon(isOutdated, currentChannel, latestVersion);
             versionInfo.innerHTML = buildHtmlForVersionInfo(
                 cacheData.currentVersion,
                 cacheData.currentChannel,
@@ -55,7 +56,7 @@ import { updateVersionCache, getCachedData } from './ext-utils.js';
     
         checkNowButton.disabled = false;
         checkNowButton.textContent = "Check Now";
-    } 
+    }
 
     // Initial update on popup load
     await updateVersionInfo();

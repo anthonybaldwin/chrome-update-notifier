@@ -74,4 +74,34 @@ function showNotification(title, message) {
     });
 }
 
-export { saveToCache, getCachedData, updateVersionCache, showNotification };
+/**
+ * Update the extension icon based on browser version status.
+ * @param {*} isOutdated 
+ * @param {*} currentChannel 
+ * @param {*} latestVersion 
+ */
+function updateBrowserStatusIcon(isOutdated, currentChannel, latestVersion) {
+    const iconPath = isOutdated ? "icons/warning-icon16.png" : "icons/normal-icon16.png";
+    const badgeText = isOutdated ? "Upd." : "";
+    const badgeColor = isOutdated ? "yellow" : "";
+    const title = isOutdated
+        ? `Update Chrome (${capitalize(currentChannel)}) to version ${latestVersion}.`
+        : `Chrome (${capitalize(currentChannel)}) is up-to-date.`;
+
+    chrome.action.setIcon({ path: iconPath });
+    chrome.action.setBadgeText({ text: badgeText });
+    chrome.action.setBadgeBackgroundColor({ color: badgeColor });
+    chrome.action.setTitle({ title: title });
+}
+
+/**
+ * Capitalizes the first letter of a string.
+ * @param {string} str - The string to capitalize.
+ * @returns {string} The capitalized string.
+ */
+function capitalize(str) {
+    if (typeof str !== 'string') return '';
+    return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+export { saveToCache, getCachedData, updateVersionCache, showNotification, updateBrowserStatusIcon, capitalize };

@@ -1,5 +1,4 @@
-import { updateVersionCache, showNotification } from './ext-utils.js';
-import { capitalize } from './string-utils.js';
+import { updateVersionCache, showNotification, updateBrowserStatusIcon } from './ext-utils.js';
 
 const CHECK_INTERVAL_MINUTES = 60; // TODO: Make this configurable via settings
 
@@ -9,27 +8,14 @@ const CHECK_INTERVAL_MINUTES = 60; // TODO: Make this configurable via settings
 async function checkAndUpdateIcon() {
     try {
         console.log("Checking Chrome version...");
-
-        const cacheData = await updateVersionCache(); // Update cache and get data
+        const cacheData = await updateVersionCache();
         if (!cacheData) {
-            chrome.action.setIcon({ path: "icons/warning-icon16.png" });
-            chrome.action.setBadgeText({ text: "!" });
-            chrome.action.setTitle({ title: "Failed to fetch version information." });
+            updateBrowserStatusIcon(true, null, null); // Indicate error
             return;
         }
 
         const { currentChannel, latestVersion, isOutdated } = cacheData;
-
-        chrome.action.setIcon({
-            path: isOutdated ? "icons/warning-icon16.png" : "icons/normal-icon16.png"
-        });
-        chrome.action.setBadgeText({ text: isOutdated ? "Upd." : "" });
-        chrome.action.setBadgeBackgroundColor({ color: "yellow" });
-        chrome.action.setTitle({
-            title: isOutdated
-                ? `Update Chrome (${capitalize(currentChannel)}) to version ${latestVersion}.`
-                : `Chrome (${capitalize(currentChannel)}) is up-to-date.`
-        });
+        updateBrowserStatusIcon(isOutdated, currentChannel, latestVersion);
 
         if (isOutdated) {
             showNotification(
