@@ -1,26 +1,110 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <title>Chrome Version Checker</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 5px;
-      width: 187px;
-    }
-    #status {
-      font-weight: bold;
-    }
-    hr {
-      border-top: 1px solid #000;
-    }
-  </style>
+    <title>Chrome Update Notifier</title>
+    <style>
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            background: linear-gradient(135deg, #4285F4, #34A853, #FBBC05, #EA4335);
+            background-size: 400% 400%;
+            animation: gradientShift 10s ease infinite;
+            padding: 20px;
+            width: 320px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            color: #333;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        p {
+            margin: 10px 0;
+            line-height: 1.6;
+        }
+
+        hr {
+            border: 0;
+            height: 1px;
+            background: #ddd;
+            margin-bottom: 15px;
+        }
+
+        #version-info {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        #status {
+            font-weight: bold;
+            font-size: 18px;
+            padding-bottom: 10px;
+        }
+
+        #status.outdated {
+            /* Google Red */
+            color: #EA4335;
+        }
+
+        #status:not(.outdated) {
+            /* Google Green */
+            color: #34A853;
+        }
+
+        #version-details p {
+            margin: 5px 0;
+        }
+
+        #last-checked {
+            font-size: 12px;
+            font-style: italic;
+            color: #666;
+            margin-top: 10px;
+        }
+
+        #check-now {
+            display: block;
+            margin: 20px auto 0;
+            padding: 10px 15px;
+            font-size: 14px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: white;
+            /* Google Yellow to Green */
+            background: linear-gradient(135deg, #FBBC05, #34A853);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        #check-now:hover {
+            /* Google Green to Blue */
+            background: linear-gradient(135deg, #34A853, #4285F4);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        #check-now:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+    </style>
 </head>
+
 <body>
-  <!-- <h3>Chrome Version Checker</h3> -->
-  <div id="version-info">
-    <p>Checking your browser version...</p>
-  </div>
-  <script type="module" src="popup.js"></script>
+    <div id="version-info">
+        <p>Loading...</p>
+    </div>
+    <button id="check-now">Check Now</button>
+    <script src="popup.js" type="module"></script>
 </body>
+
 </html>
